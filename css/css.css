@@ -1,0 +1,12 @@
+@font-face {
+  font-family: 'migra';
+  src: url('fonts/migra.woff2') format('woff2'),
+       url('fonts/migra.woff') format('woff');
+  font-display: swap;
+}
+
+/* Fallback si la police ne charge pas */
+.about-monogram {
+  font-family: 'migra', 'Cormorant Garamond', serif;
+  /* ... */
+}
