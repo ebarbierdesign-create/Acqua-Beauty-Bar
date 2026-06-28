@@ -676,18 +676,18 @@ nav#nav.scrolled {
   box-shadow: 0 12px 35px rgba(212,175,55,.45);
 }
 .btn-ghost {
-  border: 2px solid var(--sage-dark);
-  color: var(--sage-dark);
-  background: rgba(122,153,128,.08);
-  font-weight: 600;
+  background: var(--sage-dark);
+  color: var(--white);
+  border: none;
+  font-weight: 500;
+  box-shadow: 0 6px 25px rgba(122,153,128,.3);
 }
 .btn-ghost:hover {
-  border-color: var(--gold);
-  color: var(--gold);
-  background: rgba(212,175,55,.12);
+  background: var(--sage);
+  color: var(--white);
   transform: translateY(-3px);
+  box-shadow: 0 12px 35px rgba(122,153,128,.4);
 }
-
 /* ============================================
    ANIMATIONS D'APPARITION (super smooth)
    ============================================ */
@@ -1145,13 +1145,17 @@ section:hover .s-rule { width: 80px; }
 .eq-hd .s-rule { margin: 0 auto 32px; }
 .eq-grid {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 0;
-  max-width: 1000px;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 30px;
+  max-width: 600px;
   margin: 0 auto;
 }
-@media(max-width:800px) { .eq-grid { grid-template-columns: 1fr 1fr; gap: 2px; } }
-@media(max-width:480px) { .eq-grid { grid-template-columns: 1fr; } }
+@media(max-width:600px) {
+  .eq-grid {
+    grid-template-columns: 1fr;
+    max-width: 400px;
+  }
+}
 .eq-card {
   padding: 48px 32px;
   text-align: center;
@@ -1159,6 +1163,7 @@ section:hover .s-rule { width: 80px; }
   transition: all .5s cubic-bezier(.16, 1, .3, 1);
   position: relative;
   overflow: hidden;
+  border-radius: 8px;
 }
 .eq-card::before {
   content: '';
@@ -1223,7 +1228,7 @@ section:hover .s-rule { width: 80px; }
   line-height: 1.8;
   color: var(--text-light);
 }
-
+	
 /* ============================================
    GALERIE
    ============================================ */
@@ -1749,6 +1754,7 @@ footer {
     <div class="s-rule"></div>
   </div>
   <div class="eq-grid">
+    <!-- GIOVANNA -->
     <div class="eq-card" data-animate="fade-up" data-delay="3">
       <div class="eq-avatar">
         <img src="img/giovanna.png" alt="Giovanna" class="eq-avatar-img"
@@ -1758,6 +1764,7 @@ footer {
       <div class="eq-role">Fondatrice</div>
       <p class="eq-bio">Approche holistique, massage et relaxation guidée. Giovanna accompagne chaque cliente dans son chemin vers le bien-être profond.</p>
     </div>
+    <!-- CLARA -->
     <div class="eq-card" data-animate="fade-up" data-delay="4">
       <div class="eq-avatar">
         <img src="img/clara.png" alt="Clara" class="eq-avatar-img"
@@ -1766,24 +1773,6 @@ footer {
       <div class="eq-name">Clara</div>
       <div class="eq-role">Esthéticienne</div>
       <p class="eq-bio">Spécialisée dans les soins visage et les massages, Clara adapte chaque soin avec chaleur et attention.</p>
-    </div>
-    <div class="eq-card" data-animate="fade-up" data-delay="5">
-      <div class="eq-avatar">
-        <img src="img/cecilia.png" alt="Cécilia" class="eq-avatar-img"
-          onerror="this.style.display='none';this.parentElement.innerHTML='Cé'"/>
-      </div>
-      <div class="eq-name">Cécilia</div>
-      <div class="eq-role">Esthéticienne</div>
-      <p class="eq-bio">Passionnée par les soins du corps et la manucure spa, Cécilia apporte précision et bienveillance.</p>
-    </div>
-    <div class="eq-card" data-animate="fade-up" data-delay="6">
-      <div class="eq-avatar">
-        <img src="img/maurine.png" alt="Maurine" class="eq-avatar-img"
-          onerror="this.style.display='none';this.parentElement.innerHTML='✦'"/>
-      </div>
-      <div class="eq-name">Maurine</div>
-      <div class="eq-role">En formation</div>
-      <p class="eq-bio">Fraîcheur et enthousiasme au service de votre bien-être. L'avenir de l'équipe Acqua.</p>
     </div>
   </div>
 </section>
