@@ -1,239 +1,1994 @@
-@charset "UTF-8";
-/* CSS Document */
-@font-face {
-    font-family: 'migra';
-    src: url('fonts/migra.svg') format('svg'),
-         url('fonts/migra.otf') format('otf'),
-         url('fonts/migra.eot') format('eot'),
-         url('fonts/migra.woff2') format('woff2'),
-         url('fonts/migra.woff') format('woff'),
-         url('fonts/migra.ttf') format('truetype');
-    font-display: swap;
-}
-
-
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>Acqua Beauty Bar – Institut de Beauté & Bien-Être</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
 <style>
-	*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
-:root{
-  --cream:#F9F6F0;--beige:#EDE8DF;--sage:#A3B5A6;--sage-dark:#7A9980;
-  --gold:#D4AF37;--gold-light:#E8D07A;--text:#2C2419;--text-light:#7A6E63;--white:#fff;
-  --ff-title:'Cormorant Garamond',serif;--ff-body:'Montserrat',sans-serif;
-}
-html{scroll-behavior:smooth}
-body{
-    background: var(--cream);
-    color: var(--text);
-    font-family: 'migra';
-    font-weight: 300;
-    overflow-x: hidden
-}
-::-webkit-scrollbar{width:5px}::-webkit-scrollbar-track{background:var(--cream)}::-webkit-scrollbar-thumb{background:var(--sage);border-radius:3px}
-
-/* ── BLOBS ── */
-.blob{position:fixed;border-radius:50%;filter:blur(100px);opacity:.14;pointer-events:none;z-index:0;animation:drift 20s ease-in-out infinite alternate}
-.b1{width:700px;height:700px;background:var(--sage);top:-250px;left:-250px}
-.b2{width:500px;height:500px;background:var(--gold);bottom:-200px;right:-200px;animation-delay:-10s}
-@keyframes drift{to{transform:translate(50px,35px) scale(1.07)}}
-
-/* ── NAV ── */
-nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:22px 6%;display:flex;align-items:center;justify-content:space-between;transition:all .4s}
-nav.scrolled{background:rgba(249,246,240,.94);backdrop-filter:blur(18px);padding:15px 6%;box-shadow:0 1px 24px rgba(163,181,166,.12)}
-.logo{
-    font-size: 1.45rem;
-    font-weight: 400;
-    letter-spacing: .1em;
-    color: var(--text);
-    text-decoration: none
-}
-.logo b{color:var(--gold);font-weight:500}
-.nav-links{display:flex;gap:32px;list-style:none}
-.nav-links a{font-size:.65rem;letter-spacing:.18em;text-transform:uppercase;color:var(--text-light);text-decoration:none;transition:color .3s}
-.nav-links a:hover{color:var(--gold)}
-.burger{display:none;flex-direction:column;gap:5px;cursor:pointer;background:none;border:none;z-index:101}
-.burger span{display:block;width:22px;height:1px;background:var(--text);transition:.3s}
-@media(max-width:760px){
-  .nav-links{display:none;position:fixed;inset:0;background:var(--cream);flex-direction:column;align-items:center;justify-content:center;gap:36px;z-index:99}
-  .nav-links.open{display:flex}
-  .burger{display:flex}
+/* ============================================
+   FONT FACE - MIGRA (avec fallback)
+   ============================================ */
+@font-face {
+  font-family: 'migra';
+  src: url('fonts/migra.woff2') format('woff2'),
+       url('fonts/migra.woff') format('woff');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
 }
 
-/* ── CTA FLOAT ── */
-.cta-float{position:fixed;bottom:28px;right:28px;z-index:90;background:var(--gold);color:var(--white);font-size:.65rem;font-weight:500;letter-spacing:.16em;text-transform:uppercase;text-decoration:none;padding:13px 22px;border-radius:50px;box-shadow:0 8px 30px rgba(212,175,55,.4);transition:transform .3s,box-shadow .3s}
-.cta-float:hover{transform:translateY(-3px);box-shadow:0 14px 40px rgba(212,175,55,.5)}
-@media(max-width:760px){.cta-float{bottom:16px;right:14px;padding:11px 16px;font-size:.6rem}}
-
-/* ── HERO ── */
-#hero{min-height:100vh;display:flex;align-items:center;justify-content:center;text-align:center;padding:120px 6% 80px;position:relative;overflow:hidden}
-.hero-ring{position:absolute;border-radius:50%;border:1px solid rgba(163,181,166,.2)}
-.r1{width:500px;height:500px;top:50%;left:50%;transform:translate(-50%,-50%);animation:rotateSlow 40s linear infinite}
-.r2{width:750px;height:750px;top:50%;left:50%;transform:translate(-50%,-50%);animation:rotateSlow 60s linear infinite reverse}
-.r3{width:1000px;height:1000px;top:50%;left:50%;transform:translate(-50%,-50%);opacity:.5;animation:rotateSlow 80s linear infinite}
-@keyframes rotateSlow{to{transform:translate(-50%,-50%) rotate(360deg)}}
-.hero-ornament{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:320px;height:320px;border-radius:50%;background:radial-gradient(ellipse,rgba(163,181,166,.12),transparent 70%)}
-.hero-content{position:relative;z-index:2;max-width:720px}
-.hero-tag{font-size:.62rem;letter-spacing:.28em;text-transform:uppercase;color:var(--sage-dark);margin-bottom:32px;opacity:0;transform:translateY(16px);animation:up .9s .2s forwards}
-.hero-title{
-    font-family: 'migra';
-    font-size: clamp(3rem,6.5vw,5.5rem);
-    font-weight: 300;
-    line-height: 1.1;
-    color: var(--text);
-    margin-bottom: 24px;
-    opacity: 0;
-    transform: translateY(24px);
-    animation: up 1s .4s forwards
+@font-face {
+  font-family: 'migra';
+  src: url('fonts/migra-bold.woff2') format('woff2'),
+       url('fonts/migra-bold.woff') format('woff');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
 }
-.hero-title em{font-style:italic;color:var(--sage-dark)}
-.hero-line{width:48px;height:1px;background:linear-gradient(90deg,transparent,var(--gold),transparent);margin:0 auto 28px;opacity:0;animation:up .8s .55s forwards}
-.hero-sub{font-size:.88rem;line-height:2;color:var(--text-light);max-width:480px;margin:0 auto 44px;opacity:0;animation:up .9s .65s forwards}
-.hero-ctas{display:flex;gap:14px;justify-content:center;flex-wrap:wrap;opacity:0;animation:up .9s .8s forwards}
-@keyframes up{to{opacity:1;transform:translateY(0)}}
-.btn{display:inline-block;font-size:.65rem;letter-spacing:.16em;text-transform:uppercase;text-decoration:none;padding:15px 32px;border-radius:50px;transition:.3s}
-.btn-gold{background:var(--gold);color:var(--white);box-shadow:0 6px 22px rgba(212,175,55,.3)}
-.btn-gold:hover{transform:translateY(-2px);box-shadow:0 12px 30px rgba(212,175,55,.42)}
-.btn-ghost{border:1px solid rgba(44,36,25,.2);color:var(--text-light)}
-.btn-ghost:hover{border-color:var(--sage);color:var(--sage-dark)}
 
-/* ── SECTION BASE ── */
-section{position:relative;z-index:1;padding:100px 6%}
-.s-label{font-size:.6rem;letter-spacing:.28em;text-transform:uppercase;color:var(--gold);display:block;margin-bottom:18px}
-.s-title{
-    font-family: 'migra';
-    font-size: clamp(2rem,3.5vw,3rem);
-    font-weight: 300;
-    line-height: 1.2;
-    margin-bottom: 28px
+/* Fallback : si migra ne charge pas, on utilise Cormorant Garamond */
+.migra-font {
+  font-family: 'migra', 'Cormorant Garamond', serif;
 }
-.s-title em{font-style:italic;color:var(--sage-dark)}
-.s-rule{width:40px;height:1px;background:linear-gradient(90deg,var(--sage),var(--gold));margin-bottom:32px}
 
-/* ── ABOUT ── */
-#about{background:var(--beige)}
-.about-wrap{max-width:1000px;margin:0 auto;display:grid;grid-template-columns:1fr 1.6fr;gap:100px;align-items:center}
-.about-left{text-align:right}
-.about-monogram{
-    font-family: 'migra';
-    font-size: 9rem;
-    font-weight: 300;
-    line-height: 1;
-    color: transparent;
-    -webkit-text-stroke: 1px rgba(163,181,166,.4);
-    user-select: none;
-    margin-bottom: 24px
+/* ============================================
+   VARIABLES
+   ============================================ */
+:root {
+  --hero-bg-url: url('img/back.jpg');
+  --cream: #F9F6F0;
+  --beige: #EDE8DF;
+  --sage: #A3B5A6;
+  --sage-dark: #7A9980;
+  --gold: #D4AF37;
+  --gold-light: #E8D07A;
+  --text: #2C2419;
+  --text-light: #6B5E51;
+  --white: #fff;
+  --ff-title: 'Cormorant Garamond', serif;
+  --ff-body: 'Montserrat', sans-serif;
 }
-.about-quote{
-    font-family: 'migra';
-    font-size: 1.25rem;
-    font-style: italic;
-    color: var(--text-light);
-    line-height: 1.7;
-    padding-right: 40px;
-    border-right: 2px solid rgba(212,175,55,.3)
+
+/* ============================================
+   RESET & BASE
+   ============================================ */
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  background: var(--cream);
+  color: var(--text);
+  font-family: var(--ff-body);
+  font-weight: 400;
+  letter-spacing: .01em;
+  overflow-x: hidden;
 }
-.about-right p{font-size:.84rem;line-height:2;color:var(--text-light);margin-bottom:16px}
-.tags{display:flex;flex-wrap:wrap;gap:8px;margin-top:28px}
-.tag{font-size:.6rem;letter-spacing:.12em;text-transform:uppercase;padding:7px 16px;border:1px solid var(--sage);color:var(--sage-dark);border-radius:50px}
-@media(max-width:800px){.about-wrap{grid-template-columns:1fr;gap:48px}.about-left{text-align:left}.about-quote{border-right:none;border-left:2px solid rgba(212,175,55,.3);padding:0 0 0 24px}.about-monogram{font-size:6rem}}
+p { font-weight: 400; letter-spacing: .01em; }
 
-/* ── SERVICES ── */
-#services{background:var(--cream)}
-.services-hd{text-align:center;max-width:520px;margin:0 auto 64px}
-.services-hd .s-rule{margin:0 auto 32px}
-.svc-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:2px;max-width:1000px;margin:0 auto}
-@media(max-width:760px){.svc-grid{grid-template-columns:1fr 1fr}}
-@media(max-width:480px){.svc-grid{grid-template-columns:1fr}}
-.svc{padding:40px 32px;background:var(--white);transition:background .4s,transform .3s;position:relative;overflow:hidden;cursor:default}
-.svc::after{content:'';position:absolute;bottom:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--sage),var(--gold));transform:scaleX(0);transition:transform .4s;transform-origin:left}
-.svc:hover{background:var(--cream);transform:translateY(-4px)}
-.svc:hover::after{transform:scaleX(1)}
-.svc-num{
-    font-family: 'migra';
-    font-size: 2.5rem;
-    font-weight: 300;
-    color: rgba(163,181,166,.25);
-    line-height: 1;
-    margin-bottom: 16px
+::-webkit-scrollbar { width: 5px; }
+::-webkit-scrollbar-track { background: var(--cream); }
+::-webkit-scrollbar-thumb { background: var(--sage); border-radius: 3px; }
+
+/* ============================================
+   SPINNER
+   ============================================ */
+#spinner {
+  position: fixed;
+  inset: 0;
+  z-index: 99999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--cream);
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity .6s ease, visibility 0s linear .6s;
 }
-.svc-name{font-family:'migra';font-size:1.15rem;font-weight:500;margin-bottom:10px}
-.svc-desc{font-size:.75rem;line-height:1.85;color:var(--text-light)}
+#spinner.show {
+  opacity: 1;
+  visibility: visible;
+  transition: opacity .6s ease, visibility 0s linear 0s;
+}
+.spinner-dot {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  border: 3px solid rgba(212,175,55,.2);
+  border-top-color: var(--gold);
+  animation: spin .8s linear infinite;
+}
+@keyframes spin { to { transform: rotate(360deg); } }
 
-/* ── ABONNEMENTS ── */
-#abonnements{background:var(--beige)}
-.abo-hd{text-align:center;max-width:540px;margin:0 auto 64px}
-.abo-hd .s-rule{margin:0 auto 32px}
-.abo-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:24px;max-width:1050px;margin:0 auto}
-.abo{background:var(--white);border-radius:4px;padding:40px 32px;display:flex;flex-direction:column;position:relative;transition:transform .4s,box-shadow .4s;border-bottom:2px solid transparent}
-.abo:hover{transform:translateY(-6px);box-shadow:0 20px 56px rgba(163,181,166,.18);border-bottom-color:var(--gold)}
-.abo.star{background:var(--text);color:var(--white)}
-.abo-badge{position:absolute;top:-1px;left:32px;background:var(--gold);color:var(--white);font-size:.55rem;letter-spacing:.14em;text-transform:uppercase;padding:5px 14px}
-.abo-name{font-family:'migra';font-size:1.3rem;font-weight:400;margin-bottom:8px}
-.abo.star .abo-name{color:var(--gold-light)}
-.abo-desc{font-size:.75rem;line-height:1.75;color:var(--text-light);margin-bottom:24px}
-.abo.star .abo-desc{color:rgba(255,255,255,.5)}
-.abo-price{font-family:'migra';font-size:2.8rem;font-weight:300;line-height:1;margin-bottom:4px}
-.abo.star .abo-price{color:var(--white)}
-.abo-old{font-size:.72rem;color:var(--text-light);text-decoration:line-through;margin-bottom:20px}
-.abo.star .abo-old{color:rgba(255,255,255,.35)}
-.abo-list{list-style:none;margin-bottom:32px;flex:1}
-.abo-list li{font-size:.75rem;line-height:1.7;color:var(--text-light);padding:7px 0;border-bottom:1px solid rgba(163,181,166,.1);display:flex;gap:10px;align-items:flex-start}
-.abo.star .abo-list li{color:rgba(255,255,255,.55);border-bottom-color:rgba(255,255,255,.08)}
-.abo-list li::before{content:'–';color:var(--gold);flex-shrink:0}
-.btn-abo{display:block;text-align:center;border:1px solid currentColor;font-size:.62rem;letter-spacing:.15em;text-transform:uppercase;padding:13px;border-radius:50px;text-decoration:none;color:var(--gold);transition:.3s;margin-top:auto}
-.abo.star .btn-abo{color:var(--gold-light)}
-.btn-abo:hover,.abo.star .btn-abo:hover{background:var(--gold);color:var(--white);border-color:var(--gold)}
+/* ============================================
+   BACK TO TOP
+   ============================================ */
+.back-to-top {
+  position: fixed;
+  display: none;
+  right: 45px;
+  bottom: 90px;
+  z-index: 89;
+  background: var(--gold);
+  color: var(--white);
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+  transition: all .4s cubic-bezier(.2,.9,.4,1.1);
+  box-shadow: 0 4px 20px rgba(212,175,55,.35);
+  font-size: 1.2rem;
+  border: none;
+  cursor: pointer;
+}
+.back-to-top:hover {
+  background: var(--sage-dark);
+  transform: translateY(-4px) scale(1.05);
+  box-shadow: 0 8px 30px rgba(212,175,55,.5);
+}
 
-/* ── ÉQUIPE ── */
-#equipe{background:var(--cream)}
-.eq-hd{text-align:center;max-width:480px;margin:0 auto 64px}
-.eq-hd .s-rule{margin:0 auto 32px}
-.eq-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:0;max-width:1000px;margin:0 auto}
-@media(max-width:800px){.eq-grid{grid-template-columns:1fr 1fr;gap:2px}}
-@media(max-width:480px){.eq-grid{grid-template-columns:1fr}}
-.eq-card{padding:48px 32px;text-align:center;background:var(--white);position:relative;transition:background .3s}
-.eq-card:hover{background:var(--beige)}
-.eq-avatar{width:72px;height:72px;border-radius:50%;background:linear-gradient(135deg,var(--sage),var(--gold-light));display:flex;align-items:center;justify-content:center;margin:0 auto 24px;font-family:'migra';font-size:1.8rem;font-weight:300;color:var(--white)}
-.eq-name{font-family:'migra';font-size:1.2rem;font-weight:500;margin-bottom:6px}
-.eq-role{font-size:.6rem;letter-spacing:.16em;text-transform:uppercase;color:var(--gold);margin-bottom:14px}
-.eq-bio{font-size:.73rem;line-height:1.8;color:var(--text-light)}
+/* ============================================
+   PARTICULES
+   ============================================ */
+.particles {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  overflow: hidden;
+}
+.particle {
+  position: absolute;
+  background: rgba(163,181,166,.3);
+  border-radius: 50%;
+  animation: floatP 20s infinite ease-in-out;
+  filter: blur(4px);
+}
+@keyframes floatP {
+  0% { transform: translateY(100vh) scale(0) rotate(0deg); opacity: 0; }
+  20% { opacity: .6; }
+  80% { opacity: .4; }
+  100% { transform: translateY(-20vh) scale(1) rotate(720deg); opacity: 0; }
+}
 
-/* ── CADEAU ── */
-#cadeau{background:var(--text);text-align:center;padding:88px 6%}
-.cadeau-inner{max-width:580px;margin:0 auto;position:relative;z-index:1}
-#cadeau::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 70% 70% at 50% 50%,rgba(212,175,55,.07),transparent);pointer-events:none}
-.cadeau-sym{font-family:'migra';font-size:4rem;font-weight:300;color:var(--gold);opacity:.5;line-height:1;margin-bottom:20px}
-#cadeau .s-title{color:var(--white)}
-#cadeau p{font-size:.83rem;line-height:1.95;color:rgba(255,255,255,.55);margin-bottom:36px}
+/* ============================================
+   BLOBS
+   ============================================ */
+.blob {
+  position: fixed;
+  border-radius: 50%;
+  filter: blur(100px);
+  opacity: .12;
+  pointer-events: none;
+  z-index: 0;
+  animation: drift 25s ease-in-out infinite alternate;
+}
+.b1 {
+  width: 700px;
+  height: 700px;
+  background: var(--sage);
+  top: -250px;
+  left: -250px;
+}
+.b2 {
+  width: 500px;
+  height: 500px;
+  background: var(--gold);
+  bottom: -200px;
+  right: -200px;
+  animation-delay: -12s;
+}
+@keyframes drift {
+  0% { transform: translate(0,0) scale(1); }
+  100% { transform: translate(60px,40px) scale(1.08); }
+}
 
-/* ── INFOS ── */
-#infos{background:var(--beige)}
-.infos-wrap{max-width:900px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:start}
-@media(max-width:720px){.infos-wrap{grid-template-columns:1fr;gap:48px}}
-table.h-table{width:100%;border-collapse:collapse}
-.h-table tr{border-bottom:1px solid rgba(163,181,166,.15)}
-.h-table td{padding:13px 0;font-size:.82rem;color:var(--text-light)}
-.h-table td:first-child{color:var(--text);font-weight:400;width:130px}
-.h-table td:last-child{text-align:right;color:var(--sage-dark)}
-.info-row{margin-bottom:28px}
-.info-row h4{font-family:'migra';font-size:1.05rem;font-weight:500;margin-bottom:8px}
-.info-row a,.info-row p{font-size:.82rem;line-height:1.85;color:var(--text-light);text-decoration:none}
-.info-row a:hover{color:var(--gold)}
+/* ============================================
+   NAV
+   ============================================ */
+nav#nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 100;
+  padding: 22px 6%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  transition: all .6s cubic-bezier(.2,.9,.4,1.1);
+}
+nav#nav.scrolled {
+  background: rgba(249,246,240,.95);
+  backdrop-filter: blur(20px);
+  padding: 12px 6%;
+  box-shadow: 0 1px 30px rgba(163,181,166,.15);
+}
+.nav-logo {
+  transition: transform .4s cubic-bezier(.2,.9,.4,1.1);
+  display: inline-block;
+}
+.nav-logo:hover { transform: scale(1.03); }
+.nav-logo img {
+  height: 70px;
+  width: auto;
+  display: block;
+  transition: all .3s;
+}
+.logo-placeholder {
+  font-family: 'migra', 'Cormorant Garamond', serif;
+  font-size: 1.4rem;
+  font-weight: 600;
+  letter-spacing: .08em;
+  color: var(--text);
+}
+.logo-placeholder b { color: var(--gold); }
 
-/* ── FOOTER ── */
-footer{background:#1E1810;padding:52px 6% 28px;text-align:center}
-.f-logo{font-family:'migra';font-size:1.7rem;font-weight:300;letter-spacing:.12em;color:var(--white);margin-bottom:6px}
-.f-logo b{color:var(--gold)}
-.f-tag{font-size:.62rem;letter-spacing:.14em;color:rgba(255,255,255,.3);margin-bottom:28px}
-.f-social{display:flex;justify-content:center;gap:16px;margin-bottom:36px}
-.f-soc{width:38px;height:38px;border:1px solid rgba(255,255,255,.12);border-radius:50%;display:flex;align-items:center;justify-content:center;color:rgba(255,255,255,.4);text-decoration:none;transition:.3s}
-.f-soc:hover{border-color:var(--gold);color:var(--gold)}
-.f-copy{font-size:.65rem;color:rgba(255,255,255,.2);letter-spacing:.06em;border-top:1px solid rgba(255,255,255,.06);padding-top:22px}
+.nav-links {
+  display: flex;
+  gap: 32px;
+  list-style: none;
+  align-items: center;
+}
+.nav-links a {
+  font-size: .65rem;
+  letter-spacing: .18em;
+  text-transform: uppercase;
+  color: var(--text-light);
+  text-decoration: none;
+  transition: all .4s cubic-bezier(.2,.9,.4,1.1);
+  font-weight: 500;
+  position: relative;
+}
+.nav-links a::after {
+  content: '';
+  position: absolute;
+  bottom: -4px;
+  left: 0;
+  width: 0;
+  height: 1px;
+  background: var(--gold);
+  transition: width .4s cubic-bezier(.2,.9,.4,1.1);
+}
+.nav-links a:hover::after { width: 100%; }
+.nav-links a:hover {
+  color: var(--gold);
+  letter-spacing: .22em;
+}
 
-/* ── FADE-IN ── */
-.fi{opacity:0;transform:translateY(28px);transition:opacity .8s ease,transform .8s ease}
-.fi.v{opacity:1;transform:none}
-.fl{opacity:0;transform:translateX(-28px);transition:opacity .8s ease,transform .8s ease}
-.fl.v{opacity:1;transform:none}
-.fr{opacity:0;transform:translateX(28px);transition:opacity .8s ease,transform .8s ease}
-.fr.v{opacity:1;transform:none}
-.d1{transition-delay:.1s}.d2{transition-delay:.2s}.d3{transition-delay:.3s}.d4{transition-delay:.4s}.d5{transition-delay:.5s}
+.btn-presentation {
+  background: transparent;
+  border: 1px solid var(--gold);
+  color: var(--gold);
+  font-size: .6rem;
+  letter-spacing: .16em;
+  text-transform: uppercase;
+  text-decoration: none;
+  padding: 8px 18px;
+  border-radius: 50px;
+  transition: all .4s cubic-bezier(.2,.9,.4,1.1);
+  white-space: nowrap;
+}
+.btn-presentation:hover {
+  background: var(--gold);
+  color: var(--white);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(212,175,55,.3);
+}
+
+.burger {
+  display: none;
+  flex-direction: column;
+  gap: 6px;
+  cursor: pointer;
+  background: none;
+  border: none;
+  z-index: 101;
+  padding: 8px;
+}
+.burger span {
+  display: block;
+  width: 26px;
+  height: 2px;
+  background: var(--text);
+  transition: all .4s cubic-bezier(.2,.9,.4,1.1);
+  border-radius: 2px;
+}
+.burger.open span:nth-child(1) { transform: rotate(45deg) translate(6px,6px); }
+.burger.open span:nth-child(2) { opacity: 0; transform: scaleX(0); }
+.burger.open span:nth-child(3) { transform: rotate(-45deg) translate(6px,-6px); }
+
+.menu-overlay {
+  position: fixed;
+  top: 0;
+  right: -100%;
+  width: 80%;
+  max-width: 350px;
+  height: 100vh;
+  background: var(--cream);
+  z-index: 98;
+  transition: right .5s cubic-bezier(.2,.9,.4,1.1);
+  box-shadow: -8px 0 40px rgba(0,0,0,.1);
+  padding: 100px 30px 40px;
+  overflow-y: auto;
+}
+.menu-overlay.open { right: 0; }
+.menu-overlay ul {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+.menu-overlay a {
+  font-family: var(--ff-body);
+  font-size: 1rem;
+  letter-spacing: .15em;
+  text-transform: uppercase;
+  color: var(--text-light);
+  text-decoration: none;
+  transition: all .4s cubic-bezier(.2,.9,.4,1.1);
+  display: block;
+  padding: 10px 0;
+  font-weight: 500;
+  border-bottom: 1px solid rgba(163,181,166,.1);
+}
+.menu-overlay a:hover {
+  color: var(--gold);
+  transform: translateX(10px);
+  border-bottom-color: var(--gold);
+}
+.backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,.5);
+  z-index: 97;
+  opacity: 0;
+  visibility: hidden;
+  transition: all .4s cubic-bezier(.2,.9,.4,1.1);
+}
+.backdrop.open {
+  opacity: 1;
+  visibility: visible;
+}
+
+@media(max-width:1200px) {
+  .nav-links { display: none; }
+  .burger { display: flex; }
+  .btn-presentation { display: none; }
+}
+@media(max-width:760px) {
+  .nav-logo img { height: 48px; }
+  .logo-placeholder { font-size: 1.1rem; }
+}
+
+/* ============================================
+   CTA FLOAT
+   ============================================ */
+.cta-float {
+  position: fixed;
+  bottom: 28px;
+  right: 28px;
+  z-index: 90;
+  background: var(--gold);
+  color: var(--white);
+  font-size: .65rem;
+  font-weight: 500;
+  letter-spacing: .16em;
+  text-transform: uppercase;
+  text-decoration: none;
+  padding: 14px 24px;
+  border-radius: 50px;
+  box-shadow: 0 8px 35px rgba(212,175,55,.4);
+  transition: all .4s cubic-bezier(.2,.9,.4,1.1);
+  animation: softPulse 3s infinite ease-in-out;
+}
+.cta-float:hover {
+  transform: translateY(-4px) scale(1.03);
+  box-shadow: 0 14px 45px rgba(212,175,55,.6);
+  animation: none;
+}
+@keyframes softPulse {
+  0%, 100% { box-shadow: 0 8px 35px rgba(212,175,55,.3); }
+  50% { box-shadow: 0 8px 50px rgba(212,175,55,.6); }
+}
+@media(max-width:760px) {
+  .cta-float { bottom: 16px; right: 14px; padding: 11px 16px; font-size: .6rem; }
+}
+
+/* ============================================
+   SIDEBAR
+   ============================================ */
+.sidebar {
+  position: fixed;
+  top: 50%;
+  right: 20px;
+  transform: translateY(-50%);
+  z-index: 89;
+  width: 52px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  background: rgba(249,246,240,.92);
+  backdrop-filter: blur(16px);
+  border-radius: 40px;
+  padding: 18px 0;
+  box-shadow: 0 4px 25px rgba(0,0,0,.08);
+  border: 1px solid rgba(255,255,255,.7);
+  transition: all .4s cubic-bezier(.2,.9,.4,1.1);
+}
+.sidebar:hover { box-shadow: 0 8px 35px rgba(0,0,0,.12); }
+.sb-item {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #5C5246;
+  background: none;
+  border: none;
+  cursor: pointer;
+  transition: all .4s cubic-bezier(.2,.9,.4,1.1);
+  position: relative;
+  padding: 0;
+}
+.sb-item:hover {
+  color: var(--gold);
+  transform: scale(1.15) translateX(-3px);
+  background: rgba(212,175,55,.1);
+}
+.sb-item svg {
+  width: 26px;
+  height: 26px;
+  stroke-width: 2;
+  flex-shrink: 0;
+  display: block;
+  transition: transform .3s;
+}
+.sb-item:hover svg { transform: scale(1.05); }
+.sb-item::after {
+  content: attr(data-tip);
+  position: absolute;
+  right: calc(100% + 12px);
+  background: var(--text);
+  color: var(--white);
+  font-family: var(--ff-body);
+  font-size: .58rem;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  white-space: nowrap;
+  padding: 5px 14px;
+  border-radius: 20px;
+  opacity: 0;
+  pointer-events: none;
+  transform: translateX(8px) scale(.95);
+  transition: all .3s cubic-bezier(.2,.9,.4,1.1);
+  z-index: 100;
+}
+.sb-item:hover::after {
+  opacity: 1;
+  transform: translateX(0) scale(1);
+}
+.sb-sep {
+  width: 22px;
+  height: 1px;
+  background: rgba(163,181,166,.3);
+  transition: all .4s;
+}
+.sidebar:hover .sb-sep {
+  width: 30px;
+  background: rgba(212,175,55,.4);
+}
+@media(max-width:768px) {
+  .sidebar { right: 8px; opacity: .7; width: 44px; padding: 14px 0; gap: 10px; }
+  .sb-item svg { width: 22px; height: 22px; }
+  .sb-item::after { display: none; }
+}
+
+/* ============================================
+   HERO
+   ============================================ */
+#hero {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 120px 6% 80px;
+  position: relative;
+  overflow: hidden;
+  background-image: var(--hero-bg-url);
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+#hero::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, rgba(249,246,240,.5) 0%, rgba(237,232,223,.4) 100%);
+  z-index: 0;
+}
+.hero-ring {
+  position: absolute;
+  border-radius: 50%;
+  border: 1px solid rgba(163,181,166,.25);
+  pointer-events: none;
+  z-index: 1;
+}
+.r1 {
+  width: 500px;
+  height: 500px;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%,-50%);
+  animation: rotateSlow 45s linear infinite;
+}
+.r2 {
+  width: 750px;
+  height: 750px;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%,-50%);
+  animation: rotateSlow 65s linear infinite reverse;
+}
+.r3 {
+  width: 1000px;
+  height: 1000px;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%,-50%);
+  opacity: .4;
+  animation: rotateSlow 85s linear infinite;
+}
+@keyframes rotateSlow {
+  to { transform: translate(-50%,-50%) rotate(360deg); }
+}
+.hero-ornament {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%,-50%);
+  width: 350px;
+  height: 350px;
+  border-radius: 50%;
+  background: radial-gradient(ellipse, rgba(163,181,166,.12), transparent 70%);
+  z-index: 1;
+}
+.hero-content {
+  position: relative;
+  z-index: 2;
+  max-width: 720px;
+}
+.hero-title-block {
+  position: relative;
+  padding: 44px 48px 38px;
+  margin-bottom: 32px;
+  border-radius: 16px;
+  overflow: hidden;
+  background: rgba(237,232,223,.88);
+  backdrop-filter: blur(4px);
+  transition: all .6s cubic-bezier(.2,.9,.4,1.1);
+}
+.hero-title-block:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 25px 50px rgba(0,0,0,.08);
+}
+.hero-tag {
+  font-family: var(--ff-body);
+  font-size: .62rem;
+  letter-spacing: .28em;
+  text-transform: uppercase;
+  color: var(--sage-dark);
+  font-weight: 600;
+  margin-bottom: 20px;
+  position: relative;
+  z-index: 2;
+}
+.hero-title {
+  font-family: 'migra', 'Cormorant Garamond', serif;
+  font-size: clamp(2.8rem, 5.5vw, 4.8rem);
+  font-weight: 500;
+  line-height: 1.15;
+  letter-spacing: .02em;
+  color: var(--text);
+  text-shadow: 0 1px 2px rgba(0,0,0,.04);
+  position: relative;
+  z-index: 2;
+}
+.hero-title em {
+  font-style: normal;
+  color: var(--sage-dark);
+  font-weight: 500;
+}
+.hero-line {
+  width: 48px;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--gold), transparent);
+  margin: 22px 0 0;
+  position: relative;
+  z-index: 2;
+}
+.hero-sub {
+  font-family: var(--ff-body);
+  font-size: 1rem;
+  font-weight: 500;
+  line-height: 1.6;
+  color: var(--text);
+  max-width: 520px;
+  margin: 0 auto 44px;
+  letter-spacing: .02em;
+}
+.hero-ctas {
+  display: flex;
+  gap: 14px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+@media(max-width:768px) {
+  .hero-title-block { padding: 28px 20px 22px; margin-bottom: 25px; }
+  .hero-title { font-size: clamp(2rem, 7vw, 2.8rem); line-height: 1.2; }
+  .hero-tag { font-size: .55rem; letter-spacing: .2em; }
+  .hero-sub { font-size: .9rem; padding: 0 15px; }
+  .hero-ctas { flex-direction: column; align-items: center; gap: 12px; }
+  .btn { width: 80%; text-align: center; }
+}
+
+/* ============================================
+   BUTTONS
+   ============================================ */
+.btn {
+  display: inline-block;
+  font-family: var(--ff-body);
+  font-size: .65rem;
+  letter-spacing: .16em;
+  text-transform: uppercase;
+  text-decoration: none;
+  padding: 15px 34px;
+  border-radius: 50px;
+  transition: all .4s cubic-bezier(.2,.9,.4,1.1);
+  position: relative;
+  overflow: hidden;
+  font-weight: 500;
+}
+.btn::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0;
+  height: 0;
+  border-radius: 50%;
+  background: rgba(255,255,255,.2);
+  transform: translate(-50%,-50%);
+  transition: all .6s cubic-bezier(.2,.9,.4,1.1);
+}
+.btn:hover::before { width: 250px; height: 250px; }
+.btn-gold {
+  background: var(--gold);
+  color: var(--white);
+  box-shadow: 0 6px 25px rgba(212,175,55,.3);
+}
+.btn-gold:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 12px 35px rgba(212,175,55,.45);
+}
+.btn-ghost {
+  background: var(--sage-dark);
+  color: var(--white);
+  border: none;
+  font-weight: 500;
+  box-shadow: 0 6px 25px rgba(122,153,128,.3);
+}
+.btn-ghost:hover {
+  background: var(--sage);
+  color: var(--white);
+  transform: translateY(-3px);
+  box-shadow: 0 12px 35px rgba(122,153,128,.4);
+}
+/* ============================================
+   ANIMATIONS D'APPARITION (super smooth)
+   ============================================ */
+[data-animate] {
+  opacity: 0;
+  transition: all 1s cubic-bezier(.16, 1, .3, 1);
+}
+[data-animate="fade-up"] { transform: translateY(50px); }
+[data-animate="fade-left"] { transform: translateX(-50px); }
+[data-animate="fade-right"] { transform: translateX(50px); }
+[data-animate="fade-in"] { transform: scale(.96); }
+[data-animate="zoom-in"] { transform: scale(.85); }
+
+[data-animate].visible {
+  opacity: 1;
+  transform: translate(0) scale(1);
+}
+
+/* Delays */
+[data-delay="0"] { transition-delay: 0s; }
+[data-delay="1"] { transition-delay: .1s; }
+[data-delay="2"] { transition-delay: .2s; }
+[data-delay="3"] { transition-delay: .3s; }
+[data-delay="4"] { transition-delay: .4s; }
+[data-delay="5"] { transition-delay: .5s; }
+[data-delay="6"] { transition-delay: .6s; }
+[data-delay="7"] { transition-delay: .7s; }
+[data-delay="8"] { transition-delay: .8s; }
+
+/* ============================================
+   SECTIONS BASE
+   ============================================ */
+section {
+  position: relative;
+  z-index: 1;
+  padding: 100px 6%;
+}
+.s-label {
+  font-family: var(--ff-body);
+  font-size: .6rem;
+  letter-spacing: .28em;
+  text-transform: uppercase;
+  color: var(--gold);
+  display: inline-block;
+  margin-bottom: 18px;
+  position: relative;
+}
+.s-label::after {
+  content: '';
+  position: absolute;
+  bottom: -6px;
+  left: 0;
+  width: 0;
+  height: 1px;
+  background: var(--gold);
+  transition: width .6s cubic-bezier(.2,.9,.4,1.1);
+}
+section:hover .s-label::after { width: 100%; }
+.s-title {
+  font-family: 'migra', 'Cormorant Garamond', serif;
+  font-size: clamp(2rem, 3.5vw, 3rem);
+  font-weight: 600;
+  letter-spacing: .02em;
+  line-height: 1.2;
+  margin-bottom: 28px;
+}
+.s-title em {
+  font-style: italic;
+  color: var(--sage-dark);
+}
+.s-rule {
+  width: 40px;
+  height: 1px;
+  background: linear-gradient(90deg, var(--sage), var(--gold));
+  margin-bottom: 32px;
+  transition: all .6s cubic-bezier(.2,.9,.4,1.1);
+}
+section:hover .s-rule { width: 80px; }
+
+/* ============================================
+   STATS
+   ============================================ */
+.stats-container {
+  display: flex;
+  justify-content: center;
+  gap: 60px;
+  flex-wrap: wrap;
+  margin-top: 60px;
+}
+.stat-item { text-align: center; }
+.stat-number {
+  font-family: 'migra', 'Cormorant Garamond', serif;
+  font-size: 3.2rem;
+  font-weight: 700;
+  color: var(--gold);
+  line-height: 1;
+}
+.stat-label {
+  font-family: var(--ff-body);
+  font-size: .75rem;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  color: var(--text-light);
+  margin-top: 8px;
+}
+
+/* ============================================
+   ABOUT
+   ============================================ */
+#about { background: var(--beige); }
+.about-wrap {
+  max-width: 1000px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr 1.6fr;
+  gap: 100px;
+  align-items: center;
+}
+.about-left { text-align: right; }
+
+.about-right .s-title em {
+  font-size: 0.7em; /* "un cocon de douceur & d'élégance" devient plus petit */
+  font-weight: 500;
+  display: inline-block;
+}
+.about-right .s-title {
+  font-size: clamp(2.2rem, 4vw, 3.4rem); /* "Acqua" reste grand */
+  line-height: 1.15;
+}
+.about-right .s-title em {
+  font-size: 0.55em; /* encore plus petit si besoin */
+  font-weight: 500;
+  font-style: normal;
+  display: inline-block;
+  margin-top: 4px;
+}
+
+/* ===== MONOGRAMME A ===== */
+.about-monogram {
+  font-family: 'migra', 'Cormorant Garamond', serif;
+  font-size: 13rem;
+  font-weight: 700;
+}
+/* === MONOGRAMME A - SUPERBE === */
+.about-monogram {
+  font-family: 'migra', 'Cormorant Garamond', serif;
+  font-size: 13rem;
+  font-weight: 700;
+  letter-spacing: .02em;
+  line-height: 1;
+  color: transparent;
+  -webkit-text-stroke: 2px var(--gold);
+  user-select: none;
+  margin-bottom: 20px;
+  display: inline-block;
+  animation: monogramGlow 4s ease-in-out infinite;
+  transition: transform .6s cubic-bezier(.2,.9,.4,1.1);
+}
+.about-monogram:hover {
+  transform: scale(1.04) rotate(-2deg);
+}
+
+@keyframes monogramGlow {
+  0%, 100% {
+    opacity: .7;
+    -webkit-text-stroke-color: rgba(163,181,166,.5);
+    text-shadow: 0 0 0px transparent;
+  }
+  50% {
+    opacity: 1;
+    -webkit-text-stroke-color: var(--gold);
+    text-shadow: 0 0 40px rgba(212,175,55,.3), 0 0 80px rgba(212,175,55,.1);
+  }
+}
+
+@media(max-width:800px) { .about-monogram { font-size: 8rem; } }
+@media(max-width:480px) { .about-monogram { font-size: 6rem; } }
+
+.about-quote {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.25rem;
+  font-style: normal;
+  font-weight: 500;
+  color: var(--text-light);
+  line-height: 1.7;
+  padding-right: 40px;
+  border-right: 2px solid rgba(212,175,55,.3);
+  transition: all .4s cubic-bezier(.2,.9,.4,1.1);
+}
+.about-left:hover .about-quote { border-right-color: var(--gold); }
+.about-right p {
+  font-family: var(--ff-body);
+  font-size: .84rem;
+  line-height: 2;
+  color: var(--text-light);
+  margin-bottom: 16px;
+  transition: all .4s cubic-bezier(.2,.9,.4,1.1);
+}
+.about-right p:hover { transform: translateX(6px); }
+.tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 28px;
+}
+.tag {
+  font-family: var(--ff-body);
+  font-size: .6rem;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  padding: 7px 18px;
+  border: 1px solid var(--sage);
+  color: var(--sage-dark);
+  border-radius: 50px;
+  transition: all .4s cubic-bezier(.2,.9,.4,1.1);
+}
+.tag:hover {
+  background: var(--sage);
+  color: var(--white);
+  border-color: var(--sage);
+  transform: translateY(-3px);
+  box-shadow: 0 4px 15px rgba(163,181,166,.2);
+}
+@media(max-width:800px) {
+  .about-wrap { grid-template-columns: 1fr; gap: 48px; }
+  .about-left { text-align: left; }
+  .about-quote { border-right: none; border-left: 2px solid rgba(212,175,55,.3); padding: 0 0 0 24px; }
+  .about-monogram { font-size: 6rem; }
+}
+
+/* ============================================
+   SERVICES
+   ============================================ */
+#services { background: var(--cream); }
+.services-hd {
+  text-align: center;
+  max-width: 520px;
+  margin: 0 auto 64px;
+}
+.services-hd .s-rule { margin: 0 auto 32px; }
+
+.service-item {
+  position: relative;
+  margin-top: 2.5rem;
+  overflow: hidden;
+  border-radius: 80px;
+}
+.service-item-left {
+  border-radius: 80px 0 0 80px;
+  background: linear-gradient(to right, var(--beige), var(--cream));
+}
+.service-item-right {
+  border-radius: 0 80px 80px 0;
+  background: linear-gradient(to left, var(--beige), var(--cream));
+}
+.svc-row {
+  display: flex;
+  align-items: center;
+  gap: 0;
+}
+.svc-img-wrap {
+  flex: 0 0 300px;
+  padding: 40px;
+}
+.svc-img-wrap img {
+  width: 100%;
+  border-radius: 50%;
+  transition: all .6s cubic-bezier(.2,.9,.4,1.1);
+  box-shadow: 0 12px 45px rgba(0,0,0,.08);
+}
+.svc-img-wrap:hover img {
+  transform: scale(1.04);
+  box-shadow: 0 20px 50px rgba(0,0,0,.12);
+}
+.svc-text {
+  flex: 1;
+  padding: 40px 48px;
+}
+.svc-row.reverse { flex-direction: row-reverse; }
+.svc-row.reverse .svc-text { text-align: right; }
+.svc-text h3 {
+  font-family: 'migra', 'Cormorant Garamond', serif;
+  font-size: 1.8rem;
+  font-weight: 600;
+  margin-bottom: 14px;
+  color: var(--text);
+}
+.svc-text p {
+  color: var(--text-light);
+  font-size: .85rem;
+  line-height: 1.9;
+  margin-bottom: 20px;
+}
+@media(max-width:768px) {
+  .service-item {
+    border-radius: 40px 40px 0 0;
+  }
+  .service-item-left, .service-item-right {
+    border-radius: 40px 40px 0 0;
+    background: linear-gradient(to bottom, var(--beige), var(--cream));
+  }
+  .svc-row, .svc-row.reverse {
+    flex-direction: column;
+  }
+  .svc-img-wrap {
+    flex: none;
+    width: 200px;
+    padding: 24px;
+  }
+  .svc-text {
+    padding: 24px 28px;
+    text-align: center !important;
+  }
+  .svc-text h3 { font-size: 1.5rem; }
+}
+
+/* ============================================
+   ABONNEMENTS
+   ============================================ */
+#abonnements { background: var(--beige); }
+.abo-hd {
+  text-align: center;
+  max-width: 540px;
+  margin: 0 auto 64px;
+}
+.abo-hd .s-rule { margin: 0 auto 32px; }
+.abo-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 24px;
+  max-width: 1050px;
+  margin: 0 auto;
+}
+.abo {
+  background: var(--white);
+  border-radius: 4px;
+  padding: 40px 32px;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  transition: all .6s cubic-bezier(.16, 1, .3, 1);
+  border-bottom: 2px solid transparent;
+}
+.abo:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 30px 60px rgba(163,181,166,.2);
+  border-bottom-color: var(--gold);
+}
+.abo.star {
+  background: var(--text);
+  color: var(--white);
+}
+.abo-badge {
+  position: absolute;
+  top: -1px;
+  left: 32px;
+  background: var(--gold);
+  color: var(--white);
+  font-family: var(--ff-body);
+  font-size: .55rem;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+  padding: 5px 14px;
+}
+.abo-name {
+  font-family: 'migra', 'Cormorant Garamond', serif;
+  font-size: 1.4rem;
+  font-weight: 600;
+  letter-spacing: .02em;
+  margin-bottom: 8px;
+}
+.abo.star .abo-name { color: var(--gold-light); }
+.abo-desc {
+  font-family: var(--ff-body);
+  font-size: .75rem;
+  line-height: 1.75;
+  color: var(--text-light);
+  margin-bottom: 24px;
+}
+.abo.star .abo-desc { color: rgba(255,255,255,.5); }
+.abo-price {
+  font-family: 'migra', 'Cormorant Garamond', serif;
+  font-size: 2.8rem;
+  font-weight: 700;
+  line-height: 1;
+  margin-bottom: 4px;
+}
+.abo.star .abo-price { color: var(--white); }
+.abo-old {
+  font-family: var(--ff-body);
+  font-size: .72rem;
+  color: var(--text-light);
+  text-decoration: line-through;
+  margin-bottom: 20px;
+}
+.abo.star .abo-old { color: rgba(255,255,255,.35); }
+.abo-list {
+  list-style: none;
+  margin-bottom: 32px;
+  flex: 1;
+}
+.abo-list li {
+  font-family: var(--ff-body);
+  font-size: .75rem;
+  line-height: 1.7;
+  color: var(--text-light);
+  padding: 7px 0;
+  border-bottom: 1px solid rgba(163,181,166,.1);
+  display: flex;
+  gap: 10px;
+  align-items: flex-start;
+}
+.abo.star .abo-list li {
+  color: rgba(255,255,255,.55);
+  border-bottom-color: rgba(255,255,255,.08);
+}
+.abo-list li::before {
+  content: '–';
+  color: var(--gold);
+  flex-shrink: 0;
+}
+.btn-abo {
+  display: block;
+  text-align: center;
+  border: 1px solid currentColor;
+  font-family: var(--ff-body);
+  font-size: .62rem;
+  letter-spacing: .15em;
+  text-transform: uppercase;
+  padding: 13px;
+  border-radius: 50px;
+  text-decoration: none;
+  color: var(--gold);
+  transition: all .4s cubic-bezier(.2,.9,.4,1.1);
+  margin-top: auto;
+}
+.abo.star .btn-abo { color: var(--gold-light); }
+.btn-abo:hover, .abo.star .btn-abo:hover {
+  background: var(--gold);
+  color: var(--white);
+  border-color: var(--gold);
+  transform: translateY(-3px);
+  box-shadow: 0 6px 20px rgba(212,175,55,.25);
+}
+
+/* ============================================
+   ÉQUIPE
+   ============================================ */
+#equipe { background: var(--cream); }
+.eq-hd {
+  text-align: center;
+  max-width: 480px;
+  margin: 0 auto 64px;
+}
+.eq-hd .s-rule { margin: 0 auto 32px; }
+.eq-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 30px;
+  max-width: 600px;
+  margin: 0 auto;
+}
+@media(max-width:600px) {
+  .eq-grid {
+    grid-template-columns: 1fr;
+    max-width: 400px;
+  }
+}
+.eq-card {
+  padding: 48px 32px;
+  text-align: center;
+  background: var(--white);
+  transition: all .5s cubic-bezier(.16, 1, .3, 1);
+  position: relative;
+  overflow: hidden;
+  border-radius: 8px;
+}
+.eq-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 3px;
+  background: linear-gradient(90deg, var(--sage), var(--gold));
+  transition: left .6s cubic-bezier(.2,.9,.4,1.1);
+}
+.eq-card:hover {
+  background: var(--beige);
+  transform: translateY(-6px);
+  box-shadow: 0 12px 35px rgba(0,0,0,.06);
+}
+.eq-card:hover::before { left: 0; }
+.eq-avatar {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  margin: 0 auto 24px;
+  overflow: hidden;
+  background: linear-gradient(135deg, var(--sage), var(--gold-light));
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'migra', 'Cormorant Garamond', serif;
+  font-size: 2.4rem;
+  font-weight: 700;
+  color: var(--white);
+  transition: all .5s cubic-bezier(.16, 1, .3, 1);
+}
+.eq-avatar-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+.eq-card:hover .eq-avatar {
+  transform: scale(1.06);
+  box-shadow: 0 8px 25px rgba(212,175,55,.3);
+}
+.eq-name {
+  font-family: 'migra', 'Cormorant Garamond', serif;
+  font-size: 1.3rem;
+  font-weight: 600;
+  letter-spacing: .02em;
+  margin-bottom: 6px;
+}
+.eq-role {
+  font-family: var(--ff-body);
+  font-size: .6rem;
+  letter-spacing: .16em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 14px;
+}
+.eq-bio {
+  font-family: var(--ff-body);
+  font-size: .73rem;
+  line-height: 1.8;
+  color: var(--text-light);
+}
+	
+/* ============================================
+   GALERIE
+   ============================================ */
+#galerie { background: var(--cream); }
+.galerie-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+  max-width: 1000px;
+  margin: 40px auto 0;
+}
+.galerie-item {
+  position: relative;
+  border-radius: 16px;
+  overflow: hidden;
+  aspect-ratio: 1/1;
+  cursor: pointer;
+  transition: all .6s cubic-bezier(.16, 1, .3, 1);
+}
+.galerie-item img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: all .7s cubic-bezier(.16, 1, .3, 1);
+}
+.galerie-item:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 25px 40px rgba(0,0,0,.1);
+}
+.galerie-item:hover img { transform: scale(1.05); }
+.galerie-placeholder {
+  background: linear-gradient(135deg, var(--beige), var(--cream));
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  color: var(--text-light);
+  font-size: .8rem;
+  text-align: center;
+  padding: 20px;
+  height: 100%;
+}
+.galerie-placeholder svg {
+  width: 40px;
+  height: 40px;
+  margin-bottom: 12px;
+  opacity: .5;
+  stroke: var(--sage);
+}
+@media(max-width:760px) { .galerie-grid { grid-template-columns: 1fr 1fr; gap: 15px; } }
+@media(max-width:480px) { .galerie-grid { grid-template-columns: 1fr; } }
+
+/* ============================================
+   CADEAU
+   ============================================ */
+#cadeau {
+  background: var(--text);
+  text-align: center;
+  padding: 88px 6%;
+  position: relative;
+}
+.cadeau-inner {
+  max-width: 580px;
+  margin: 0 auto;
+  position: relative;
+  z-index: 1;
+}
+#cadeau::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse 70% 70% at 50% 50%, rgba(212,175,55,.07), transparent);
+  pointer-events: none;
+}
+.cadeau-sym {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 4rem;
+  font-weight: 300;
+  color: var(--gold);
+  opacity: .5;
+  line-height: 1;
+  margin-bottom: 20px;
+  animation: softPulse 3s infinite;
+}
+#cadeau .s-title {
+  color: var(--white);
+  margin-bottom: 18px;
+}
+#cadeau .s-title em { color: var(--gold-light); }
+#cadeau p {
+  font-family: var(--ff-body);
+  font-size: .83rem;
+  line-height: 1.95;
+  color: rgba(255,255,255,.55);
+  margin-bottom: 36px;
+}
+#cadeau .btn-gold { box-shadow: 0 6px 30px rgba(212,175,55,.3); }
+#cadeau .btn-gold:hover { box-shadow: 0 12px 40px rgba(212,175,55,.5); }
+
+/* ============================================
+   INFOS
+   ============================================ */
+#infos { background: var(--beige); }
+.infos-wrap {
+  max-width: 900px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 80px;
+  align-items: start;
+}
+@media(max-width:720px) { .infos-wrap { grid-template-columns: 1fr; gap: 48px; } }
+table.h-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+.h-table tr {
+  border-bottom: 1px solid rgba(163,181,166,.15);
+  transition: all .3s;
+}
+.h-table tr:hover { background: rgba(163,181,166,.06); }
+.h-table td {
+  padding: 13px 0;
+  font-family: var(--ff-body);
+  font-size: .82rem;
+  color: var(--text-light);
+}
+.h-table td:first-child {
+  color: var(--text);
+  font-weight: 500;
+  width: 130px;
+}
+.h-table td:last-child {
+  text-align: right;
+  color: var(--sage-dark);
+  font-weight: 700;
+}
+.info-row {
+  margin-bottom: 28px;
+  transition: all .4s cubic-bezier(.2,.9,.4,1.1);
+}
+.info-row:hover { transform: translateX(8px); }
+.info-row h4 {
+  font-family: 'migra', 'Cormorant Garamond', serif;
+  font-size: 1.1rem;
+  font-weight: 600;
+  letter-spacing: .02em;
+  margin-bottom: 8px;
+}
+.info-row a, .info-row p {
+  font-family: var(--ff-body);
+  font-size: .82rem;
+  line-height: 1.85;
+  color: var(--text-light);
+  text-decoration: none;
+}
+.info-row a:hover { color: var(--gold); }
+
+/* ============================================
+   FOOTER
+   ============================================ */
+footer {
+  background: #1E1810;
+  padding: 52px 6% 28px;
+  text-align: center;
+}
+.f-logo {
+  margin-bottom: 16px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.f-logo img {
+  width: 200px;
+  height: auto;
+  display: block;
+  margin: 0 auto;
+  filter: brightness(0) invert(1);
+  opacity: .9;
+  transition: all .4s cubic-bezier(.2,.9,.4,1.1);
+}
+.f-logo img:hover {
+  opacity: 1;
+  transform: scale(1.02);
+}
+.f-logo-fallback {
+  font-family: 'migra', 'Cormorant Garamond', serif;
+  font-size: 1.7rem;
+  font-weight: 500;
+  letter-spacing: .12em;
+  color: var(--white);
+  display: none;
+}
+.f-logo-fallback b { color: var(--gold); }
+.f-tag {
+  font-family: var(--ff-body);
+  font-size: .62rem;
+  letter-spacing: .14em;
+  color: rgba(255,255,255,.3);
+  margin-bottom: 28px;
+}
+.f-social {
+  display: flex;
+  justify-content: center;
+  gap: 16px;
+  margin-bottom: 36px;
+}
+.f-soc {
+  width: 38px;
+  height: 38px;
+  border: 1px solid rgba(255,255,255,.12);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: rgba(255,255,255,.4);
+  text-decoration: none;
+  transition: all .4s cubic-bezier(.2,.9,.4,1.1);
+}
+.f-soc:hover {
+  border-color: var(--gold);
+  color: var(--gold);
+  transform: translateY(-4px) rotate(6deg);
+}
+.f-copy {
+  font-family: var(--ff-body);
+  font-size: .65rem;
+  color: rgba(255,255,255,.2);
+  letter-spacing: .06em;
+  border-top: 1px solid rgba(255,255,255,.06);
+  padding-top: 22px;
+}
+@media(max-width:768px) { .f-logo img { width: 150px; } }
+
+/* ============================================
+   RESPONSIVE GLOBAL
+   ============================================ */
+@media(max-width:480px) {
+  section { padding: 60px 5%; }
+  .hero-title-block { padding: 20px 16px 16px; }
+  .hero-title { font-size: 1.8rem; }
+  .hero-sub { font-size: .8rem; }
+  .btn { font-size: .58rem; padding: 12px 22px; width: 100%; }
+  .about-monogram { font-size: 5rem; }
+  .stats-container { gap: 30px; }
+  .stat-number { font-size: 2.4rem; }
+  .abo-grid { grid-template-columns: 1fr; }
+  .eq-card { padding: 32px 20px; }
+  .service-item { border-radius: 20px 20px 0 0; }
+  .svc-img-wrap { width: 140px; padding: 16px; }
+  .svc-text { padding: 16px 20px; }
+  .svc-text h3 { font-size: 1.2rem; }
+}
 </style>
+</head>
+<body>
+
+<!-- ===== SPINNER ===== -->
+<div id="spinner" class="show"><div class="spinner-dot"></div></div>
+
+<!-- ===== PARTICULES ===== -->
+<div class="particles" id="particles"></div>
+<div class="blob b1"></div>
+<div class="blob b2"></div>
+
+<!-- ===== BACK TO TOP ===== -->
+<button class="back-to-top" id="backTop" aria-label="Retour en haut">↑</button>
+
+<!-- ===== CTA FLOAT ===== -->
+<a href="tel:+32493910917" class="cta-float">✦ Prendre RDV</a>
+
+<!-- ===== SIDEBAR ===== -->
+<aside class="sidebar" aria-label="Navigation rapide">
+  <button class="sb-item" data-target="about" data-tip="À propos">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><circle cx="12" cy="12" r="9"/><path d="M12 8v4m0 4h.01"/></svg>
+  </button>
+  <button class="sb-item" data-target="services" data-tip="Soins">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M12 2c-2 4-5 5.5-5 9a5 5 0 0 0 10 0c0-3.5-3-5-5-9z"/><path d="M12 15v2m0 3h.01"/></svg>
+  </button>
+  <button class="sb-item" data-target="abonnements" data-tip="Abonnements">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><rect x="3" y="6" width="18" height="13" rx="2"/><path d="M3 10h18M8 3v3m8-3v3"/></svg>
+  </button>
+  <div class="sb-sep"></div>
+  <button class="sb-item" data-target="equipe" data-tip="Équipe">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><circle cx="9" cy="8" r="3"/><path d="M3 20c0-3.3 2.7-6 6-6s6 2.7 6 6"/><circle cx="17" cy="8" r="2.5"/><path d="M21 20c0-2.8-1.8-5-4-5.5"/></svg>
+  </button>
+  <button class="sb-item" data-target="galerie" data-tip="Galerie">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><rect x="2" y="2" width="20" height="20" rx="2"/><circle cx="8.5" cy="8.5" r="2.5"/><path d="M21 15l-5-4-3 3-4-4-5 5"/></svg>
+  </button>
+  <button class="sb-item" data-target="infos" data-tip="Infos">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><circle cx="12" cy="12" r="9"/><path d="M12 16v-5m0-3h.01"/></svg>
+  </button>
+  <div class="sb-sep"></div>
+  <button class="sb-item" data-target="reserver" data-tip="Réserver" style="color:var(--gold)">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.61 3.4 2 2 0 0 1 3.6 1.22h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.91a16 16 0 0 0 6 6l.94-.94a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 21.73 16.92z"/></svg>
+  </button>
+</aside>
+
+<!-- ===== NAV ===== -->
+<nav id="nav">
+  <a href="#hero" class="nav-logo">
+    <img src="img/logo_svg.svg" alt="Acqua Beauty Bar"
+      onerror="this.style.display='none';this.nextElementSibling.style.display='block'"/>
+    <span class="logo-placeholder" style="display:none">Acqua <b>Beauty</b> Bar</span>
+  </a>
+  <ul class="nav-links" id="nl">
+    <li><a href="#about">À propos</a></li>
+    <li><a href="#services">Soins</a></li>
+    <li><a href="#abonnements">Abonnements</a></li>
+    <li><a href="#equipe">Équipe</a></li>
+    <li><a href="#galerie">Galerie</a></li>
+    <li><a href="#infos">Infos</a></li>
+    <li><a href="tel:+32493910917" style="color:var(--gold)">Réserver</a></li>
+    <li><a href="docs/presentation.pdf" target="_blank" class="btn-presentation">📄 Présentation</a></li>
+  </ul>
+  <button class="burger" id="burgerBtn" aria-label="Menu">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<!-- ===== MENU OVERLAY ===== -->
+<div class="menu-overlay" id="menuOverlay">
+  <ul>
+    <li><a href="#about">À propos</a></li>
+    <li><a href="#services">Soins</a></li>
+    <li><a href="#abonnements">Abonnements</a></li>
+    <li><a href="#equipe">Équipe</a></li>
+    <li><a href="#galerie">Galerie</a></li>
+    <li><a href="#infos">Infos</a></li>
+    <li><a href="tel:+32493910917" style="color:var(--gold)">📞 Réserver</a></li>
+    <li><a href="docs/presentation.pdf" target="_blank">📄 Présentation</a></li>
+  </ul>
+</div>
+<div class="backdrop" id="backdrop"></div>
+
+<!-- ===== HERO ===== -->
+<section id="hero">
+  <div class="hero-ring r1"></div>
+  <div class="hero-ring r2"></div>
+  <div class="hero-ring r3"></div>
+  <div class="hero-ornament"></div>
+  <div class="hero-content">
+    <div class="hero-title-block" data-animate="fade-up" data-delay="2">
+      <p class="hero-tag">Institut de Beauté & Bien-Être · Awans</p>
+      <h1 class="hero-title">L'art du soin,<br/>l'âme du <em>bien-être</em></h1>
+      <div class="hero-line"></div>
+    </div>
+    <p class="hero-sub" data-animate="fade-up" data-delay="4">Un lieu chaleureux où prendre soin de soi devient une évidence.</p>
+    <div class="hero-ctas" data-animate="fade-up" data-delay="6">
+      <a href="https://salonkee.be/salon/acqua-beauty-bar/widget/service?mode=sb&lang=fr" target="_blank" class="btn btn-gold">Réserver un soin</a>
+      <a href="#about" class="btn btn-ghost">Découvrir l'institut</a>
+    </div>
+  </div>
+</section>
+
+<!-- ===== ABOUT ===== -->
+<section id="about">
+  <div class="about-wrap">
+    <div class="about-left" data-animate="fade-left" data-delay="2">
+      <div class="about-monogram">A</div>
+      <p class="about-quote">« Un lieu chaleureux où prendre soin de soi devient une évidence. »</p>
+      <p style="font-family:'migra','Cormorant Garamond',serif;font-size:.65rem;letter-spacing:.18em;text-transform:uppercase;color:var(--gold);margin-top:18px;padding-right:40px">Acqua Beauty Bar</p>
+    </div>
+    <div class="about-right" data-animate="fade-right" data-delay="4">
+      <span class="s-label">Notre histoire</span>
+      <h2 class="s-title">
+        Acqua,<br/>
+        <em>un cocon de douceur &amp; d'élégance</em>
+      </h2>
+      <div class="s-rule"></div>
+      <p>Acqua Beauty Bar vous accueille pour une parenthèse de douceur et de reconnexion à vous-même. Chaque soin est pensé sur mesure, dans une ambiance élégante et bienveillante.</p>
+      <p>Giovanna, la fondatrice, intègre une approche holistique et intuitive à travers le massage et la relaxation guidée. Clara et Cécilia vous reçoivent avec la même attention chaleureuse — un thé ou un café vous sera proposé pour prolonger la détente.</p>
+      <p>Une cabine en mezzanine pour les soins visage et corps, deux espaces manucure et deux fauteuils pédicure pour partager un moment à deux.</p>
+      <div class="tags">
+        <span class="tag">Approche holistique</span>
+        <span class="tag">Soins sur mesure</span>
+        <span class="tag">Duo possible</span>
+        <span class="tag">Ambiance cocon</span>
+      </div>
+    </div>
+  </div>
+  <!-- STATS -->
+  <div class="stats-container" data-animate="fade-up" data-delay="6">
+    <div class="stat-item">
+      <div class="stat-number"><span class="counter" data-target="5">0</span>+</div>
+      <div class="stat-label">Années d'expertise</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-number"><span class="counter" data-target="1200">0</span>+</div>
+      <div class="stat-label">Soins réalisés</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-number"><span class="counter" data-target="100">0</span>%</div>
+      <div class="stat-label">Satisfaction client</div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== SERVICES ===== -->
+<section id="services">
+  <div class="services-hd" data-animate="fade-up" data-delay="2">
+    <span class="s-label">Nos prestations</span>
+    <h2 class="s-title">Des soins pensés pour <em>chaque envie</em></h2>
+    <div class="s-rule"></div>
+  </div>
+
+  <div class="service-item service-item-left" data-animate="fade-left" data-delay="3">
+    <div class="svc-row">
+      <div class="svc-img-wrap">
+        <img src="img/service-massage.jpg" alt="Massages" onerror="this.src='https://placehold.co/300x300/EDE8DF/A3B5A6?text=Massages'"/>
+      </div>
+      <div class="svc-text">
+        <h3>Massages</h3>
+        <p>Techniques thaïes, balinaises, suédoises ou drainantes — adaptées à vos besoins du moment pour une détente profonde et durable.</p>
+        <a href="https://salonkee.be/salon/acqua-beauty-bar/widget/service?mode=sb&lang=fr" target="_blank" class="btn btn-ghost">Réserver</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="service-item service-item-right" data-animate="fade-right" data-delay="4">
+    <div class="svc-row reverse">
+      <div class="svc-img-wrap">
+        <img src="img/service-visage.jpg" alt="Soins Visage" onerror="this.src='https://placehold.co/300x300/EDE8DF/A3B5A6?text=Soins+Visage'"/>
+      </div>
+      <div class="svc-text">
+        <h3>Soins Visage</h3>
+        <p>Kobido, Expert Jeunesse, Peau Nette — des soins personnalisés avec massage facialiste pour révéler l'éclat de votre peau.</p>
+        <a href="https://salonkee.be/salon/acqua-beauty-bar/widget/service?mode=sb&lang=fr" target="_blank" class="btn btn-ghost">Réserver</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="service-item service-item-left" data-animate="fade-left" data-delay="5">
+    <div class="svc-row">
+      <div class="svc-img-wrap">
+        <img src="img/service-manucure.jpg" alt="Manucure" onerror="this.src='https://placehold.co/300x300/EDE8DF/A3B5A6?text=Manucure'"/>
+      </div>
+      <div class="svc-text">
+        <h3>Manucure & Pédicure Spa</h3>
+        <p>Raffinement pour vos mains et vos pieds, en solo ou en duo, dans une atmosphère de luxe discret et de douceur partagée.</p>
+        <a href="https://salonkee.be/salon/acqua-beauty-bar/widget/service?mode=sb&lang=fr" target="_blank" class="btn btn-ghost">Réserver</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="service-item service-item-right" data-animate="fade-right" data-delay="6">
+    <div class="svc-row reverse">
+      <div class="svc-img-wrap">
+        <img src="img/service-holistique.jpg" alt="Approche Holistique" onerror="this.src='https://placehold.co/300x300/EDE8DF/A3B5A6?text=Holistique'"/>
+      </div>
+      <div class="svc-text">
+        <h3>Approche Holistique</h3>
+        <p>Relaxation guidée et bien-être profond par Giovanna, pour aller plus loin en soi et retrouver l'équilibre intérieur.</p>
+        <a href="https://salonkee.be/salon/acqua-beauty-bar/widget/service?mode=sb&lang=fr" target="_blank" class="btn btn-ghost">Réserver</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== ABONNEMENTS ===== -->
+<section id="abonnements">
+  <div class="abo-hd" data-animate="fade-up" data-delay="2">
+    <span class="s-label">Engagements beauté</span>
+    <h2 class="s-title">Abonnements <em>exclusifs</em></h2>
+    <div class="s-rule"></div>
+  </div>
+  <div class="abo-grid">
+    <div class="abo" data-animate="fade-up" data-delay="3">
+      <div class="abo-name">Soins Visage</div>
+      <p class="abo-desc">Prendre soin de sa peau régulièrement, avec des soins adaptés à votre type.</p>
+      <div class="abo-price">550 €</div>
+      <ul class="abo-list">
+        <li>11 × Peau Nette Express</li>
+        <li>Rendez-vous prioritaires</li>
+        <li>Économie sur le tarif unitaire</li>
+      </ul>
+      <a href="https://salonkee.be/salon/acqua-beauty-bar/widget/subscriptions/9874/items?mode=sb&lang=fr" target="_blank" class="btn-abo">Réserver</a>
+    </div>
+    <div class="abo star" data-animate="fade-up" data-delay="4">
+      <div class="abo-badge">Coup de cœur</div>
+      <div class="abo-name">Beauté Durable</div>
+      <p class="abo-desc">Le Kobido Prestige — art japonais ancestral pour un teint sculptural et liftant.</p>
+      <div class="abo-price">1 200 €</div>
+      <div class="abo-old">Valeur : 1 430 € · économie –16%</div>
+      <ul class="abo-list">
+        <li>11 × Kobido Prestige Liftant</li>
+        <li>Suivi personnalisé</li>
+        <li>Rendez-vous prioritaires</li>
+      </ul>
+      <a href="https://salonkee.be/salon/acqua-beauty-bar/widget/subscriptions/10354/items?mode=sb&lang=fr" target="_blank" class="btn-abo">Réserver</a>
+    </div>
+    <div class="abo" data-animate="fade-up" data-delay="5">
+      <div class="abo-name">Expert Jeunesse</div>
+      <p class="abo-desc">Correction rides et raffermissant — résultats visibles dès les premières séances.</p>
+      <div class="abo-price">900 €</div>
+      <div class="abo-old">Économie de –22%</div>
+      <ul class="abo-list">
+        <li>11 × Soin Rides Raffermissant</li>
+        <li>Protocole anti-âge intensif</li>
+        <li>Rendez-vous prioritaires</li>
+      </ul>
+      <a href="https://salonkee.be/salon/acqua-beauty-bar/widget/subscriptions/10357/items?mode=sb&lang=fr" target="_blank" class="btn-abo">Réserver</a>
+    </div>
+    <div class="abo" data-animate="fade-up" data-delay="6">
+      <div class="abo-name">Massages Bien-Être</div>
+      <p class="abo-desc">Un rituel régulier de détente sur mesure. Formule personnalisable selon vos besoins.</p>
+      <div class="abo-price">Sur devis</div>
+      <ul class="abo-list">
+        <li>Techniques au choix</li>
+        <li>Cure jambes légères incluse</li>
+        <li>Rendez-vous prioritaires</li>
+      </ul>
+      <a href="tel:+32493910917" class="btn-abo">Nous contacter</a>
+    </div>
+  </div>
+</section>
+
+<!-- ===== ÉQUIPE ===== -->
+<section id="equipe">
+  <div class="eq-hd" data-animate="fade-up" data-delay="2">
+    <span class="s-label">Celles qui vous chouchoutent</span>
+    <h2 class="s-title">Notre <em>équipe</em></h2>
+    <div class="s-rule"></div>
+  </div>
+  <div class="eq-grid">
+    <!-- GIOVANNA -->
+    <div class="eq-card" data-animate="fade-up" data-delay="3">
+      <div class="eq-avatar">
+        <img src="img/giovanna.png" alt="Giovanna" class="eq-avatar-img"
+          onerror="this.style.display='none';this.parentElement.innerHTML='G'"/>
+      </div>
+      <div class="eq-name">Giovanna</div>
+      <div class="eq-role">Fondatrice</div>
+      <p class="eq-bio">Approche holistique, massage et relaxation guidée. Giovanna accompagne chaque cliente dans son chemin vers le bien-être profond.</p>
+    </div>
+    <!-- CLARA -->
+    <div class="eq-card" data-animate="fade-up" data-delay="4">
+      <div class="eq-avatar">
+        <img src="img/clara.png" alt="Clara" class="eq-avatar-img"
+          onerror="this.style.display='none';this.parentElement.innerHTML='C'"/>
+      </div>
+      <div class="eq-name">Clara</div>
+      <div class="eq-role">Esthéticienne</div>
+      <p class="eq-bio">Spécialisée dans les soins visage et les massages, Clara adapte chaque soin avec chaleur et attention.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ===== GALERIE ===== -->
+<section id="galerie">
+  <div data-animate="fade-up" data-delay="2" style="text-align:center;max-width:700px;margin:0 auto 48px">
+    <span class="s-label">Notre écrin de bien-être</span>
+    <h2 class="s-title">Découvrez <em>notre institut</em></h2>
+    <div class="s-rule" style="margin:0 auto"></div>
+    <p style="color:var(--text-light);font-size:.85rem;margin-top:20px">Un cadre chaleureux et apaisant, pensé pour votre détente absolue.</p>
+  </div>
+  <div class="galerie-grid">
+    <div class="galerie-item" data-animate="fade-up" data-delay="3">
+      <img src="img/galerie-1.png" alt="Espace détente" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"/>
+      <div class="galerie-placeholder" style="display:none">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><rect x="2" y="2" width="20" height="20" rx="2"/><circle cx="8.5" cy="8.5" r="2.5"/><path d="M21 15l-5-4-3 3-4-4-5 5"/></svg>
+        <span>Espace détente</span><small style="font-size:10px;margin-top:8px;opacity:.6">Photo à venir</small>
+      </div>
+    </div>
+    <div class="galerie-item" data-animate="fade-up" data-delay="4">
+      <img src="img/galerie-2.jpg" alt="Cabine de soins" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"/>
+      <div class="galerie-placeholder" style="display:none">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><rect x="2" y="2" width="20" height="20" rx="2"/><circle cx="8.5" cy="8.5" r="2.5"/><path d="M21 15l-5-4-3 3-4-4-5 5"/></svg>
+        <span>Cabine de soins</span><small style="font-size:10px;margin-top:8px;opacity:.6">Photo à venir</small>
+      </div>
+    </div>
+    <div class="galerie-item" data-animate="fade-up" data-delay="5">
+      <img src="img/galerie-3.jpg" alt="Espace manucure" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"/>
+      <div class="galerie-placeholder" style="display:none">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><rect x="2" y="2" width="20" height="20" rx="2"/><circle cx="8.5" cy="8.5" r="2.5"/><path d="M21 15l-5-4-3 3-4-4-5 5"/></svg>
+        <span>Espace manucure</span><small style="font-size:10px;margin-top:8px;opacity:.6">Photo à venir</small>
+      </div>
+    </div>
+  </div>
+  <p data-animate="fade-up" data-delay="6" style="text-align:center;margin-top:32px;font-size:.7rem;color:var(--text-light)">✨ Bientôt, plus d'images de notre cocon ✨</p>
+</section>
+
+<!-- ===== CADEAU ===== -->
+<section id="cadeau">
+  <div class="cadeau-inner" data-animate="fade-up" data-delay="2">
+    <div class="cadeau-sym">✦</div>
+    <span class="s-label" style="color:var(--gold)">Bons cadeaux</span>
+    <h2 class="s-title" style="margin-bottom:18px">Offrez un moment <em>spécial</em></h2>
+    <p>Un bon cadeau Acqua Beauty Bar — montant libre ou prestation au choix. Le présent délicat pour marquer une occasion avec grâce.</p>
+    <a href="https://salonkee.be/salon/acqua-beauty-bar/widget/gift-card?mode=sb&lang=fr" target="_blank" class="btn btn-gold">Offrir un bon cadeau</a>
+  </div>
+</section>
+
+<!-- ===== INFOS ===== -->
+<section id="infos">
+  <div style="max-width:900px;margin:0 auto">
+    <div data-animate="fade-up" data-delay="2" style="text-align:center;margin-bottom:64px">
+      <span class="s-label">Venir nous voir</span>
+      <h2 class="s-title">Horaires & <em>Contact</em></h2>
+      <div class="s-rule" style="margin:0 auto"></div>
+    </div>
+    <div class="infos-wrap">
+      <div data-animate="fade-left" data-delay="4">
+        <table class="h-table">
+          <tr><td>Lundi</td><td>Fermé</td></tr>
+          <tr><td>Mardi</td><td>9h – 18h30</td></tr>
+          <tr><td>Mercredi</td><td>9h – 18h30</td></tr>
+          <tr><td>Jeudi</td><td>9h – 19h00</td></tr>
+          <tr><td>Vendredi</td><td>9h – 18h30</td></tr>
+          <tr><td>Samedi</td><td>9h – 17h00</td></tr>
+          <tr><td>Dimanche</td><td>Fermé</td></tr>
+        </table>
+      </div>
+      <div data-animate="fade-right" data-delay="5">
+        <div class="info-row"><h4>Adresse</h4><p>Rue de Bruxelles 40A<br/>4340 Awans, Belgique</p></div>
+        <div class="info-row"><h4>Téléphone</h4><a href="tel:+32493910917">+32 493 91 09 17</a></div>
+        <div class="info-row"><h4>Réservation</h4><a href="https://salonkee.be/salon/acqua-beauty-bar/widget/service?mode=sb&lang=fr" target="_blank" style="color:var(--gold)">Réserver en ligne →</a></div>
+        <div class="info-row"><h4>Réseaux sociaux</h4>
+          <p><a href="https://www.instagram.com/acquabeautybar" target="_blank">Instagram · @acquabeautybar</a><br/>
+          <a href="https://www.facebook.com/acquabeautybar" target="_blank">Facebook · Acqua Beauty Bar</a></p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== FOOTER ===== -->
+<footer>
+  <div class="f-logo">
+    <img src="img/logo_svg.svg" alt="Acqua Beauty Bar"
+      onerror="this.style.display='none';this.nextElementSibling.style.display='block'"/>
+    <span class="f-logo-fallback">Acqua <b>Beauty</b> Bar</span>
+  </div>
+  <div class="f-tag">Acqua Beauty Bar · Institut de Beauté & Bien-Être · Awans, Belgique</div>
+  <div class="f-social">
+    <a href="https://www.instagram.com/acquabeautybar" target="_blank" class="f-soc" aria-label="Instagram">
+      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg>
+    </a>
+    <a href="https://www.facebook.com/acquabeautybar" target="_blank" class="f-soc" aria-label="Facebook">
+      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
+    </a>
+  </div>
+  <div class="f-copy">© 2025 Acqua Beauty Bar · Rue de Bruxelles 40A, 4340 Awans · <a href="tel:+32493910917" style="color:inherit">+32 493 91 09 17</a></div>
+</footer>
+
+<script>
+// ===== SPINNER =====
+window.addEventListener('load', function() {
+  var s = document.getElementById('spinner');
+  s.classList.remove('show');
+});
+
+// ===== NAV SCROLL =====
+var nav = document.getElementById('nav');
+window.addEventListener('scroll', function() {
+  nav.classList.toggle('scrolled', window.scrollY > 50);
+  var bt = document.getElementById('backTop');
+  bt.style.display = window.scrollY > 400 ? 'flex' : 'none';
+});
+
+// ===== BURGER / OVERLAY =====
+var burger = document.getElementById('burgerBtn');
+var overlay = document.getElementById('menuOverlay');
+var backdrop = document.getElementById('backdrop');
+
+function closeMenu() {
+  burger.classList.remove('open');
+  overlay.classList.remove('open');
+  backdrop.classList.remove('open');
+}
+
+burger.addEventListener('click', function() {
+  burger.classList.toggle('open');
+  overlay.classList.toggle('open');
+  backdrop.classList.toggle('open');
+});
+backdrop.addEventListener('click', closeMenu);
+document.querySelectorAll('.menu-overlay a').forEach(function(el) {
+  el.addEventListener('click', closeMenu);
+});
+
+// ===== SIDEBAR =====
+document.querySelectorAll('.sb-item[data-target]').forEach(function(btn) {
+  btn.addEventListener('click', function(e) {
+    var t = this.getAttribute('data-target');
+    if (!t) return;
+    if (t === 'reserver') {
+      window.location.href = 'tel:+32493910917';
+      return;
+    }
+    var el = document.getElementById(t);
+    if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  });
+});
+
+// ===== PARTICULES =====
+(function() {
+  var c = document.getElementById('particles');
+  for (var i = 0; i < 14; i++) {
+    var p = document.createElement('div');
+    p.className = 'particle';
+    var sz = Math.random() * 10 + 3;
+    p.style.cssText = 'width:' + sz + 'px;height:' + sz + 'px;left:' + Math.random() * 100 + '%;animation-delay:' + Math.random() * 20 + 's;animation-duration:' + (16 + Math.random() * 12) + 's';
+    c.appendChild(p);
+  }
+})();
+
+// ===== COUNTERS =====
+function animCounter(el) {
+  var target = +el.getAttribute('data-target');
+  var dur = 1800;
+  var step = target / dur * 16;
+  var cur = 0;
+  var t = setInterval(function() {
+    cur = Math.min(cur + step, target);
+    el.textContent = Math.floor(cur);
+    if (cur >= target) clearInterval(t);
+  }, 16);
+}
+var cio = new IntersectionObserver(function(entries) {
+  entries.forEach(function(e) {
+    if (e.isIntersecting) {
+      e.target.querySelectorAll('.counter').forEach(animCounter);
+      cio.unobserve(e.target);
+    }
+  });
+}, { threshold: .3 });
+document.querySelectorAll('.stats-container').forEach(function(el) { cio.observe(el); });
+
+// ===== ANIMATIONS AU SCROLL (super smooth) =====
+var animObserver = new IntersectionObserver(function(entries) {
+  entries.forEach(function(entry) {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('visible');
+    }
+  });
+}, { threshold: .15, rootMargin: '0px 0px -30px 0px' });
+
+document.querySelectorAll('[data-animate]').forEach(function(el) {
+  animObserver.observe(el);
+});
+
+// ===== BACK TO TOP =====
+document.getElementById('backTop').addEventListener('click', function(e) {
+  e.preventDefault();
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+});
+
+// ===== SMOOTH SCROLL FOR NAV LINKS =====
+document.querySelectorAll('a[href^="#"]').forEach(function(anchor) {
+  anchor.addEventListener('click', function(e) {
+    var href = this.getAttribute('href');
+    if (href === '#') return;
+    var target = document.querySelector(href);
+    if (target) {
+      e.preventDefault();
+      target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+  });
+});
+</script>
+</body>
+</html>
